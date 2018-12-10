@@ -30,10 +30,10 @@ if (searchType == "spotify-this-song") {
         let song = data.tracks.items[0];
 
         console.log(song);
-        console.log("artist(s)"+song.album.artists[0].name);
-        console.log("song name: "+newSearch);
-        console.log("link to song preview: "+song.preview_url);
-        console.log("album: "+song.album.name);
+        console.log("artist(s)" + song.album.artists[0].name);
+        console.log("song name: " + newSearch);
+        console.log("link to song preview: " + song.preview_url);
+        console.log("album: " + song.album.name);
     });
 };
 
@@ -60,15 +60,30 @@ if (searchType === "movie-this") {
 
             let responseObject = JSON.parse(body);
 
-            console.log("title: "+responseObject.Title)
-            console.log("year: "+responseObject.Year);
-            console.log("imdb rating: "+responseObject.imdbRating);
-            console.log("rotten tomatoes rating: "+responseObject.Ratings[2]);
-            console.log("country: "+responseObject.Country);
-            console.log("language: "+responseObject.Language);
-            console.log("plot: "+responseObject.Plot);
+            console.log("title: " + responseObject.Title)
+            console.log("year: " + responseObject.Year);
+            console.log("imdb rating: " + responseObject.imdbRating);
+            console.log("rotten tomatoes rating: " + responseObject.Ratings[2]);
+            console.log("country: " + responseObject.Country);
+            console.log("language: " + responseObject.Language);
+            console.log("plot: " + responseObject.Plot);
         };
     });
 }
 
+//bands in town api search
+if (searchType === "concert-this") {
+    let finalSearch;
+    for (let i = 0; i < newSearch.length; i++) {
+        finalSearch = "'" + newSearch[i] + "'+";
+    };
+    var request = require('request');
+    let searchURL = "https://rest.bandsintown.com/artists/" + finalSearch + "/events?app_id=codingbootcamp";
+    request(searchURL, function(error, response){
+        if(error){
+            console.log(error);
+        };
+        console.log(response);
+    });
+};
 

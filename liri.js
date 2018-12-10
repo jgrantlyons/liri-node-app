@@ -26,15 +26,14 @@ if (searchType == "spotify-this-song") {
             return console.log('Error occurred: ' + err);
         }
 
-        let responseObject = JSON.parse(data);
+        // let responseObject = JSON.parse(data);
+        let song = data.tracks.items[0];
 
-        console.log(responseObject);
-        console.log(
-            //Artist(s)
-            //The song's name
-            //A preview link of the song from Spotify
-            //The album that the song is from
-        );
+        console.log(song);
+        console.log("artist(s)"+song.album.artists[0].name);
+        console.log("song name: "+newSearch);
+        console.log("link to song preview: "+song.preview_url);
+        console.log("album: "+song.album.name);
     });
 };
 
@@ -68,16 +67,6 @@ if (searchType === "movie-this") {
             console.log("country: "+responseObject.Country);
             console.log("language: "+responseObject.Language);
             console.log("plot: "+responseObject.Plot);
-            // title
-            // year
-            // imdbRating
-            // rottentomatoeRating
-            // country
-            // language
-            // plot
-
-            // resource below
-            // console.log(response.Title, response.Year, response.imdbRating, response.Ratings[2].Value, response.Country, response.Language, response.Plot, response.Actors);
         };
     });
 }

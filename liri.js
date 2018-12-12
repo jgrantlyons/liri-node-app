@@ -37,11 +37,6 @@ if (searchType == "spotify-this-song") {
     });
 };
 
-
-
-
-
-
 //omdb api search
 if (searchType === "movie-this") {
     let finalSearch;
@@ -69,7 +64,7 @@ if (searchType === "movie-this") {
             console.log("plot: " + responseObject.Plot);
         };
     });
-}
+};
 
 //bands in town api search
 if (searchType === "concert-this") {
@@ -84,6 +79,12 @@ if (searchType === "concert-this") {
             console.log(error);
         };
         console.log(response);
+        // console.log(response)
+
+
+
+
+
     });
 };
 

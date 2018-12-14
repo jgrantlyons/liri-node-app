@@ -18,6 +18,21 @@ let searchType = process.argv[2];
 let searchInput = process.argv[3];
 let newSearch = searchInput.split(" ");
 
+console.log(newSearch);
+
+//bands in town api search
+if (searchType === "concert-this") {
+    let finalSearch = newSearch.join("%20");
+    let request = require('request');
+    let searchURL = "https://rest.bandsintown.com/artists/" + finalSearch + "/events?app_id=codingbootcamp";
+    request(searchURL, function (error, response) {
+        if (error) {
+            console.log(error);
+        };
+        let returnObject = JSON.parse(response.body);
+        console.log(returnObject);
+    });
+};
 
 //spotify api search
 if (searchType == "spotify-this-song") {
@@ -29,7 +44,7 @@ if (searchType == "spotify-this-song") {
         // let responseObject = JSON.parse(data);
         let song = data.tracks.items[0];
 
-        console.log(song);
+        // console.log(song);
         console.log("artist(s)" + song.album.artists[0].name);
         console.log("song name: " + newSearch);
         console.log("link to song preview: " + song.preview_url);
@@ -66,25 +81,4 @@ if (searchType === "movie-this") {
     });
 };
 
-//bands in town api search
-if (searchType === "concert-this") {
-    let finalSearch;
-    for (let i = 0; i < newSearch.length; i++) {
-        finalSearch = "'" + newSearch[i] + "'+";
-    };
-    var request = require('request');
-    let searchURL = "https://rest.bandsintown.com/artists/" + finalSearch + "/events?app_id=codingbootcamp";
-    request(searchURL, function(error, response){
-        if(error){
-            console.log(error);
-        };
-        console.log(response);
-        // console.log(response)
-
-
-
-
-
-    });
-};
 

@@ -31,6 +31,10 @@ if (searchType === "concert-this") {
         };
         let returnObject = JSON.parse(response.body);
         console.log(returnObject);
+        for(let i = 0; i<returnObject.length; i++){
+            console.log(returnObject[i].venue.name);
+            
+        };
     });
 };
 
